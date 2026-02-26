@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ist-voice-agent-web
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 4 app.web:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    healthCheckPath: /health
+
+  - type: worker
+    name: ist-voice-agent-worker
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python agent_entrypoint.py dev
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"

@@ -1,0 +1,8 @@
+.env
+chroma_db/
+logs/*.txt
+logs/*.json
+__pycache__/
+*.pyc
+.venv/
+venv/
